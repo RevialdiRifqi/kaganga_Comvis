@@ -1,6 +1,6 @@
 # Klasifikasi Aksara Kaganga Menggunakan Convolutional Neural Network (CNN)
 
-Tugas Kelompok
+## Kelompok 12
 
 Program Studi Informatika  
 Fakultas Teknik  
@@ -20,48 +20,111 @@ Universitas Bengkulu
 
 ## Deskripsi Proyek
 
-Proyek ini merupakan implementasi metode **Convolutional Neural Network (CNN)** untuk melakukan klasifikasi citra **Aksara Kaganga**. Model dikembangkan menggunakan Python dan TensorFlow untuk mengenali karakter aksara secara otomatis berdasarkan dataset citra yang telah diproses.
+Proyek ini bertujuan untuk membangun sistem klasifikasi citra Aksara Kaganga menggunakan metode **Convolutional Neural Network (CNN)**. Sistem dirancang untuk mengenali karakter aksara berdasarkan gambar yang diberikan dan mengelompokkannya ke dalam kelas yang sesuai.
+
+Aksara Kaganga merupakan salah satu aksara tradisional yang digunakan di wilayah Bengkulu dan sekitarnya. Dengan memanfaatkan teknologi Deep Learning, proses pengenalan karakter dapat dilakukan secara otomatis dengan tingkat akurasi yang baik.
+
+---
 
 ## Tujuan
 
-- Memahami konsep Deep Learning dan CNN.
-- Menerapkan CNN pada klasifikasi citra.
-- Melatih dan mengevaluasi model klasifikasi Aksara Kaganga.
-- Menganalisis performa model menggunakan metrik evaluasi.
+- Mempelajari penerapan Deep Learning dalam pengolahan citra.
+- Mengimplementasikan algoritma CNN untuk klasifikasi Aksara Kaganga.
+- Melatih model agar mampu mengenali pola karakter aksara.
+- Mengevaluasi performa model menggunakan data pengujian.
+
+---
 
 ## Teknologi yang Digunakan
 
 - Python
 - TensorFlow
+- Keras
 - NumPy
 - Matplotlib
 - Seaborn
 - Scikit-Learn
-- Google Colab
+- Google Colab / Jupyter Notebook
+
+---
 
 ## Struktur Repository
 
 ```text
 .
-├── Untitled1.ipynb
-├── model_kaganga.keras
 ├── dataset/
+│   ├── train/
+│   └── validation/
+├── model_kaganga.keras
+├── Untitled1.ipynb
 └── README.md
 ```
 
-## Metode
+---
 
-### Data Augmentation
+## Penjelasan Sistem
 
-- Rescale = 1/255
+Sistem klasifikasi Aksara Kaganga dibangun menggunakan metode Convolutional Neural Network (CNN). CNN dipilih karena memiliki kemampuan yang sangat baik dalam mengenali pola visual pada gambar.
+
+### 1. Input Data
+
+Dataset yang digunakan berupa kumpulan gambar karakter Aksara Kaganga yang telah dikelompokkan berdasarkan kelas masing-masing.
+
+Setiap gambar akan diproses dan diubah ukurannya menjadi **64 × 64 piksel** agar sesuai dengan kebutuhan model CNN.
+
+### 2. Preprocessing dan Data Augmentation
+
+Sebelum proses pelatihan dilakukan, data terlebih dahulu diproses menggunakan teknik **Data Augmentation** untuk meningkatkan variasi data dan mengurangi risiko overfitting.
+
+Teknik yang digunakan antara lain:
+
+- Rescaling (1/255)
 - Rotation Range = 10°
 - Zoom Range = 0.1
 - Width Shift Range = 0.1
 - Height Shift Range = 0.1
 
-### Arsitektur CNN
+Tahap ini membantu model belajar dari berbagai variasi bentuk karakter.
 
-1. Input Layer (64×64×3)
+### 3. Pelatihan Model CNN
+
+Model CNN terdiri dari beberapa lapisan:
+
+- Convolution Layer
+- Max Pooling Layer
+- Flatten Layer
+- Dense Layer
+- Output Layer (Softmax)
+
+Convolution Layer berfungsi mengekstraksi fitur penting dari gambar, sedangkan Max Pooling digunakan untuk mengurangi dimensi data tanpa kehilangan informasi utama.
+
+Setelah fitur diperoleh, data akan diratakan menggunakan Flatten Layer dan diteruskan ke Dense Layer untuk proses klasifikasi.
+
+### 4. Proses Klasifikasi
+
+Pada tahap ini model akan memprediksi kelas aksara berdasarkan fitur yang telah dipelajari selama proses training.
+
+Output akhir menggunakan fungsi aktivasi **Softmax** sehingga menghasilkan probabilitas untuk setiap kelas aksara.
+
+### 5. Evaluasi Model
+
+Kinerja model dievaluasi menggunakan:
+
+- Training Accuracy
+- Validation Accuracy
+- Training Loss
+- Validation Loss
+- Confusion Matrix
+
+Hasil evaluasi digunakan untuk mengetahui seberapa baik model dalam mengenali karakter Aksara Kaganga.
+
+---
+
+## Arsitektur CNN
+
+Model CNN yang digunakan memiliki struktur sebagai berikut:
+
+1. Input Layer (64 × 64 × 3)
 2. Convolution Layer (32 Filter)
 3. Max Pooling Layer
 4. Convolution Layer (64 Filter)
@@ -72,31 +135,58 @@ Proyek ini merupakan implementasi metode **Convolutional Neural Network (CNN)** 
 9. Dense Layer
 10. Output Layer (Softmax)
 
-### Parameter Pelatihan
+---
 
-- Epoch : 15
-- Batch Size : 32
-- Optimizer : Adam
-- Loss Function : Categorical Crossentropy
+## Parameter Pelatihan
 
-## Hasil
+| Parameter | Nilai |
+|------------|--------|
+| Epoch | 15 |
+| Batch Size | 32 |
+| Optimizer | Adam |
+| Loss Function | Categorical Crossentropy |
 
-Model dievaluasi menggunakan:
+---
 
-- Accuracy Curve
-- Loss Curve
-- Confusion Matrix
-- Akurasi Prediksi
+## Alur Kerja Sistem
 
-## Cara Menjalankan
+```text
+Dataset Gambar
+       │
+       ▼
+Preprocessing
+(Data Augmentation)
+       │
+       ▼
+Training CNN
+       │
+       ▼
+Model Terlatih
+       │
+       ▼
+Prediksi Karakter
+       │
+       ▼
+Evaluasi Model
+```
 
-### Install Dependency
+---
+
+## Cara Menjalankan Program
+
+### 1. Clone Repository
+
+```bash
+git clone https://github.com/username/repository.git
+```
+
+### 2. Install Dependency
 
 ```bash
 pip install tensorflow numpy matplotlib seaborn scikit-learn
 ```
 
-### Jalankan Notebook
+### 3. Jalankan Notebook
 
 ```bash
 jupyter notebook Untitled1.ipynb
@@ -104,6 +194,24 @@ jupyter notebook Untitled1.ipynb
 
 atau buka menggunakan Google Colab.
 
+### 4. Siapkan Dataset
+
+Pastikan dataset Aksara Kaganga telah tersedia pada direktori yang sesuai sebelum menjalankan proses pelatihan model.
+
+---
+
+## Output Program
+
+Program menghasilkan:
+
+- Model CNN Terlatih (`model_kaganga.keras`)
+- Grafik Accuracy
+- Grafik Loss
+- Confusion Matrix
+- Hasil Prediksi Klasifikasi Aksara Kaganga
+
+---
+
 ## Kesimpulan
 
-Model CNN yang dibangun mampu melakukan klasifikasi Aksara Kaganga dengan baik melalui proses pelatihan dan pengujian. Hasil yang diperoleh menunjukkan bahwa metode Deep Learning dapat digunakan sebagai solusi untuk pengenalan aksara daerah secara otomatis.
+Berdasarkan implementasi yang dilakukan, metode Convolutional Neural Network (CNN) mampu digunakan untuk melakukan klasifikasi Aksara Kaganga secara otomatis. Model dapat mempelajari pola karakter dari dataset gambar dan menghasilkan prediksi yang baik. Hasil ini menunjukkan bahwa teknologi Deep Learning dapat dimanfaatkan dalam pelestarian dan digitalisasi aksara daerah.
